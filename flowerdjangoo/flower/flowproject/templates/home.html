@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>flower booking website.......</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body  onload="slider()" >
+<div class="container" >
+    <div class="con">
+        <img src="{% static 'images/fl1.svg' %}" id="sl">
+    </div>
+        <nav>
+            <img class="logo"  src="{%  static 'images/logo.png' %}" >
+            <ul>
+                {% if user.is_authenticated %}
+                <li>Hello {{user.username}}</li>
+                <li><a href="logapp/logout">Logout</a> </li>
+
+                {% else %}
+                <li><a href="logapp/login">Login</a> </li>
+                <li><a href="logapp/register">Register</a> </li>
+                {% endif %}
+                <li><a href="#">Branches</a>
+                    <ul>
+                        <li><a href="https://en.wikipedia.org/wiki/Palakkad">Palakkad</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Pathanamthitta">Pathanamthitta</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Ernakulam">Ernakulam</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Kollam">Kollam</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Idukki_district">Idukki</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Kottayam">Kottayam</a></li>
+                        <li><a href="https://en.wikipedia.org/wiki/Alappuzha">Alappuzha</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <div>
+            <a href="logapp/login">
+               <button class="btn">Order Now</button>
+            </a>
+        </div>
+
+
+
+</div>
+
+
+
+
+<script>
+    var sl = document.getElementById("sl");
+
+    var images = new  Array(
+                "/static/images/fl1.svg",
+                "/static/images/fl2.svg",
+                "/static/images/fl3.svg",
+
+
+
+    );
+    var len = images.length;
+    var i = 0;
+
+    function slider(){
+        if(i > len-1){
+            i = 0;
+        }
+        sl.src = images[i];
+        i++;
+        setTimeout('slider()',3000);
+    }
+
+
+
+</script>
+
+</body>
+</html>

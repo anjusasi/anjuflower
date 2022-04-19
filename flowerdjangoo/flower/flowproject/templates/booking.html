@@ -1,0 +1,188 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/booking.css' %}">
+</head>
+<body>
+<div class="container">
+   <div class="form">
+    <form action="book" method="post">
+        {% csrf_token %}
+        <div class="heading">
+            <h1>Flower Booking...</h1>
+        </div>
+        {% for msg in messages %}
+            {{msg}}
+        {% endfor %}
+        <div class="wrap">
+            <div class="f1">
+                <label>Customer Name</label>
+                <input type="text" name="customername" required/>
+                <span class="focus-input"></span>
+            </div>
+            <div class="f2">
+                <label>Phone Number</label>
+                <input type="text" name="phonenumber" required/>
+                <span class="focus-input"></span>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="f1">
+             <label>Email</label>
+             <input type="email" name="email" required/>
+             <span class="focus-input2"></span>
+           </div>
+
+           <div class="f2">
+            <label>Address</label>
+            <input type="text" name="address" required/>
+            <span class="focus-input2"></span>
+           </div>
+        </div>
+        <div class="wrap">
+         <div class="f1">
+          <label>Choose your Flower</label>
+            <select name="item" id="item">
+                 <option value="">Select flower</option>
+                 <option value="">Rose $ 120 (per kg) </option>
+                 <option value="">Jasmine $ 700 (per kg)</option>
+                 <option value="">Lotus $ 400 (per kg)</option>
+                <option value="">Aambal $ 300 (per kg)</option>
+                <option value="">Arali $ 500 (per kg)</option>
+                <option value="">Kanikonna $ 600 (per kg)</option>
+                <option value="">Hibiscus $ 60 (per kg)</option>
+                <option value="">Thettipoo $ 80 (per kg)</option>
+                <option value="">Mandaram $ 240 (per kg)</option>
+                <option value="">Chempakam $ 500 (per kg)</option>
+                <option value="">Marigold $ 80 (per kg)</option>
+                <option value="">Lily $ 90 (per kg)</option>
+
+
+            </select>
+        </div>
+
+        <div class="f2">
+            <label>Quantity</label>
+            <input type="number" name="quantity" required/>
+            <span class="focus-input"></span>
+        </div>
+        </div>
+
+
+        <div class="f-group">
+          <label for="">District</label>
+            <select name="slct1" id="slct1" onchange= "populate(this.id,'slct2')">
+                 <option value=""> choose district</option>
+                 <option value="idukki">Idukki</option>
+                 <option value="kottayam">Kottayam</option>
+                 <option value="ernakulam">Ernakulam</option>
+                 <option value="alappuzha">Alappuzha</option>
+                 <option value="pathanamthitta">Pathanamthitta</option>
+                 <option value="kollam">Kollam</option>
+                 <option value="palakkad">Palakkad</option>
+            </select>
+        </div>
+
+        <div class="f-group">
+           <label for="">City</label>
+           <select name="slct2" id="slct2"></select>
+       </div>
+        <button class="btn">Book Now</button>
+
+    </form>
+
+   </div>
+<!--    <div class="image">-->
+<!--        <img src="{% static 'images/book.svg' %}">-->
+<!--    </div>-->
+
+</div>
+<a href="/">
+        <button class="btn">Home</button>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function populate(s1,s2)
+    {
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+
+        s2.innerHTML = "";
+
+
+        if(s1.value == 'idukki')
+        {
+            var optionArray = ['adimali|Adimali', 'munnar|Munnar','kumily|Kumily',
+                                'kattappana|Kattappana','thodupuzha|Thodupuzha',
+                                'anakkara|Anakkara','nedumkandam|Nedumkandam'];
+        }
+        else if (s1.value == "kottayam")
+        {
+            var optionArray = ['pala|Pala', 'mundakayam|Mundakayam','kanjirapally|Kanjirapally',
+                               'ponkunnam|Ponkunnam','Chenganaserry|Chenganaserry'];
+        }
+        else if (s1.value == "ernakulam")
+        {
+            var optionArray = ['kochi|Kochi', 'kalamaserry|Kalamaserry','kakkanad|Kakkanad',
+                               'perumbavoor|Perumbavoor','tripunithura|Tripunithura'];
+        }
+        else if (s1.value == "alappuzha")
+        {
+            var optionArray = ['mavelikkara|Mavelikkara', 'haripad|Haripad','ambalapuzha|Ambalapuzha',
+                               'kayamkulam|Kayamkulam','cherthala|Cherthala'];
+        }
+        else if (s1.value == "pathanamthitta")
+        {
+            var optionArray = ['aaranmula|Aaranmula', 'thiruvalla|Thiruvalla','adoor|Adoor',
+                               'konni|Konni','ranni|Ranni'];
+        }
+        else if (s1.value == "kollam")
+        {
+            var optionArray = ['kottarakkara|Kottarakkara', 'kottiyam|Kottiyam','punalur|Punalur',
+                               'oachira|Oachira','mukhathala|Mukhathala'];
+        }
+        else if (s1.value == "palakkad")
+        {
+            var optionArray = ['pattambi|Pattambi', 'ottappalam|Ottappalam','shornur|Shornur',
+                               'parali|Parali','thrithala|Thrithala'];
+        }
+        for(var option in optionArray)
+        {
+           var pair = optionArray[option].split("|");
+           var newOption = document.createElement("option");
+
+           newOption.value = pair[0];
+           newOption.innerHTML=pair[1];
+           s2.options.add(newOption);
+        }
+
+
+    }
+
+</script>
+
+
+
+
+
+</body>
+</html>

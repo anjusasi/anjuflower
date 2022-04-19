@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+
+<!--       <a href="/">-->
+<!--           <button class="btn2">Home</button>-->
+<!--       </a>-->
+       <div class="down">
+            <h3>Dont't have an Account? please Register first</h3>
+             <a href="register">
+                 <button class="btn">Register</button>
+             </a>
+       </div>
+
+        <img class="wave" src="{% static 'images/mob.svg' %}">
+
+        <div class="container">
+            <div class="img">
+            </div>
+            <div class="login-container">
+                <form action="login" method="post">
+                    {% csrf_token %}
+                    <img  class= "avatar" src="{% static 'images/ui.svg' %}">
+                    <h1>LOGIN</h1>
+                    <div class="wrap">
+                        <div class="f1">
+                      <div class="text-field one">
+                        <input type="text" name="username" placeholder="username" required><br>
+                        <span class="focus-input"></span>
+                      </div>
+                      <div class="text-field two" >
+                        <input type="password" name="password"  placeholder="password" required><br>
+                        <span class="focus-input"></span>
+                      </div>
+                    </div>
+                 </div>
+
+                    <button class="btn">Login</button>
+
+                 </form>
+            </div>
+            <div>
+
+          </div>
+        </div>
+
+</body>
+</html>

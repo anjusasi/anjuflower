@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="{% static 'css/reg.css' %}">
+</head>
+<body>
+        <div class="container">
+            <div class="form">
+                <form action="register" method="post">
+                     {% csrf_token %}
+                    <div class="heading">
+                        <h1>Registration</h1>
+                    </div>
+                    {% for msg in messages %}
+                        {{msg}}
+                    {% endfor %}
+                    <div class="wrap">
+                        <div class="f1">
+                            <label>First Name</label>
+                            <input type="text" name="first_name" required/>
+                            <span class="focus-input"></span>
+                        </div>
+                         <div class="f2">
+                            <label>Last Name</label>
+                            <input type="text" name="last_name" required/>
+                            <span class="focus-input"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="wrap2">
+                        <label>Username</label>
+                        <input type="text" name="username" required/>
+                        <span class="focus-input2"></span>
+                    </div>
+
+                     <div class="wrap2">
+                        <label>Password</label>
+                        <input type="password" name="password" required/>
+                        <span class="focus-input2"></span>
+                    </div>
+
+                     <div class="wrap2">
+                        <label>Confirm password</label>
+                        <input type="password" name="con_password" required/>
+                        <span class="focus-input2"></span>
+                    </div>
+                    <button class="btn">Register</button>
+
+                </form>
+            </div>
+
+            <div class="image">
+                <img src="{% static 'images/uio.svg' %}">
+
+                 <a href="/">
+                    <button class="btn">Home</button>
+                </a>
+            </div>
+        </div>
+
+
+</body>
+</html>
